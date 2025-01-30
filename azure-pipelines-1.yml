@@ -1,0 +1,12 @@
+trigger:
+  - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  - task: AzureWebApp@1
+    inputs:
+      azureSubscription: 'YOUR_AZURE_SERVICE_CONNECTION'
+      appName: 'benson-resume'
+      package: '$(Build.SourcesDirectory)/*'
