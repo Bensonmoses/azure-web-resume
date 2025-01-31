@@ -1,4 +1,4 @@
-const functionapi = "https://<Azure-resume>.azurewebsites.net/visitcount"; 
+const functionapi = "https://AzureWebAppForFlask.azurewebsites.net/visitcount"; // Use your actual Web App URL
 
 window.addEventListener('load', () => {
     getVisitCount();
