@@ -1,0 +1,14 @@
+trigger:
+- main  # Runs on push to main branch
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: AzureStaticWebApp@1
+  inputs:
+    azureSubscription: 'my-azure-resume-connection'  # Your service connection
+    app_location: 'frontend'  # Path where index.html is stored
+    api_location: ''  # No API in Static Web App
+    output_location: ''  # No build output
+  displayName: 'Deploy Frontend to Azure Static Web Apps'
