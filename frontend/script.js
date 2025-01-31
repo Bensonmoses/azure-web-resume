@@ -1,8 +1,8 @@
+const functionapi = "http://127.0.0.1:5000/visitcount"; // Change this to your Azure URL after deployment
+
 window.addEventListener('load', () => {
     getVisitCount();
 });
-
-const functionapi = "https://your-api-url.com/visitcount"; // Replace with actual API endpoint
 
 const getVisitCount = () => {
     fetch(functionapi)
@@ -13,6 +13,5 @@ const getVisitCount = () => {
         })
         .catch(error => {
             console.error("Error fetching visit count:", error);
-            document.getElementById("counter").innerText = "Error loading count";
         });
 };
