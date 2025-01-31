@@ -1,4 +1,4 @@
-const functionapi = "http://127.0.0.1:5000/visitcount"; // Change this to your Azure URL after deployment
+const functionapi = "https://<Azure-resume>.azurewebsites.net/visitcount"; 
 
 window.addEventListener('load', () => {
     getVisitCount();
