@@ -1,19 +1,25 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
+name: Build and Deploy .NET App
 
-trigger:
-- main
+on:
+  push:
+    branches:
+      - main  # Trigger on push to main branch
 
-pool:
-  vmImage: ubuntu-latest
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Use a hosted runner
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3  # Ensures code is available
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+    - name: Setup .NET Core SDK
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '7.0.x'  # Adjust based on your project's SDK version
+
+    - name: Restore Dependencies
+      run: dotnet restore YourProject/YourProject.csproj  # Update the path
+
+    - name: Build Project
+      run: dotnet build YourProject/YourProject.csproj --configuration Release
