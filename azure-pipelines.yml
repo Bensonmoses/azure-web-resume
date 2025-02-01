@@ -1,14 +1,25 @@
-trigger:
-- main  # Runs on push to main branch
+name: Build and Deploy .NET App
 
-pool:
-  name: 'LAPTOP-8MVSFPFT'  # Replace with your actual self-hosted agent pool name
+on:
+  push:
+    branches:
+      - main  # Trigger on push to main branch
 
-steps:
-- task: AzureStaticWebApp@0  # Using Version 0
-  inputs:
-    app_location: 'frontend'  # Path where index.html is stored
-    api_location: ''  # No API in Static Web App
-    output_location: ''  # No build output
-    azure_static_web_apps_api_token: $(deployment_token)  # Add Deployment Token
-  displayName: 'Deploy Frontend to Azure Static Web App'
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Use a hosted runner
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3  # Ensures code is available
+
+    - name: Setup .NET Core SDK
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '7.0.x'  # Adjust based on your project's SDK version
+
+    - name: Restore Dependencies
+      run: dotnet restore YourProject/YourProject.csproj  # Update the path
+
+    - name: Build Project
+      run: dotnet build YourProject/YourProject.csproj --configuration Release
