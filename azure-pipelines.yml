@@ -2,10 +2,10 @@ trigger:
 - main  # Runs on push to main branch
 
 pool:
-  vmImage: ubuntu-latest  # Use Ubuntu for the pipeline
+  name: 'LAPTOP-8MVSFPFT'  # Replace with your actual self-hosted agent pool name
 
 steps:
-- task: AzureStaticWebApp@0  # Use Version 0 instead of 1
+- task: AzureStaticWebApp@0  # Using Version 0
   inputs:
     app_location: 'frontend'  # Path where index.html is stored
     api_location: ''  # No API in Static Web App
